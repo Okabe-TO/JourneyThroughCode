@@ -12,10 +12,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2  # リポジトリのコードをチェックアウトする
+      uses: actions/checkout@v3  # リポジトリのコードをチェックアウトする
 
     - name: Setup Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v0.2.1  # Google Cloud SDKをセットアップする
+      uses: google-github-actions/setup-gcloud@v1  # Google Cloud SDKをセットアップする
       with:
         service_account_key: ${{ secrets.GCP_SA_KEY }}  # GCPのサービスアカウントキー
         project_id: ${{ secrets.GCP_PROJECT_ID }}  # GCPのプロジェクトID
