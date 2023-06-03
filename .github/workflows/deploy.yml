@@ -20,7 +20,7 @@ jobs:
     - name: Authenticate with gcloud
       uses: google-github-actions/auth@v0.4.0
       with:
-        credentials: ${{ secrets.GCP_SA_KEY }}  # GCPのサービスアカウントキー
+        credentials_json: ${{ secrets.GCP_SA_KEY }}  # GCPのサービスアカウントキー
 
     - name: Configure gcloud
       run: |
