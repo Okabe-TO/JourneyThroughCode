@@ -26,6 +26,10 @@ jobs:
       run: |
         gcloud config set project ${{ secrets.GCP_PROJECT_ID }}  # GCPのプロジェクトID
 
+    - name: Create App Engine application if not exists
+      run: |
+        gcloud app describe || gcloud app create --region=asia-northeast2
+
     - name: Deploy to GCP
       run: |  # GCPにデプロイするコマンドを実行
         gcloud app deploy frontend/app.yaml --quiet
