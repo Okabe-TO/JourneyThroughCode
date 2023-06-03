@@ -23,4 +23,5 @@ jobs:
 
     - name: Deploy to GCP
       run: |  # GCPにデプロイするコマンドを実行
-        gcloud app deploy app.yaml --quiet
+        gcloud app deploy frontend/app.yaml --quiet
+        gcloud app deploy backend/app.yaml --quiet
