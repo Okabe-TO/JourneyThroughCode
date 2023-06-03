@@ -1,0 +1,26 @@
+name: Deploy to Google App Engine
+
+on:
+  push:
+    branches:
+      - main  # デプロイするブランチを指定
+
+jobs:
+  setup:
+    name: Deploy
+    runs-on: ubuntu-latest  # 実行環境を指定
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2  # リポジトリのコードをチェックアウトする
+
+    - name: Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0.2.1  # Google Cloud SDKをセットアップする
+      with:
+        service_account_key: ${{ secrets.GCP_SA_KEY }}  # GCPのサービスアカウントキー
+        project_id: ${{ secrets.GCP_PROJECT_ID }}  # GCPのプロジェクトID
+        export_default_credentials: true  # デフォルトの認証情報をエクスポートする
+
+    - name: Deploy to GCP
+      run: |  # GCPにデプロイするコマンドを実行
+        gcloud app deploy app.yaml --quiet
